@@ -1,10 +1,10 @@
 {
-  "name": "edu_db_labs",
+  "name": "fastroof_team_project",
   "version": "2.1.0",
   "main": "index.js",
-  "description": "Databases labs template",
-  "repository": "https://github.com/boldak/dis-edu",
-  "author": "Andrey Boldak <boldak.andrey@gmail.com>",
+  "description": "Система управління відкритими даними",
+  "repository": "https://github.com/Fastroof/fastroof_team_project",
+  "author": "Danilo Litvinenko <lytvdan@gmail.com>",
   "license": "ECL 2.0",
   "scripts": {
     "docs:dev": "npx vuepress dev docs",

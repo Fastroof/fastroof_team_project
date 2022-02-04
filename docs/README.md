@@ -3,13 +3,25 @@ home: true
 actionText: Розпочати →
 actionLink: /intro/
 
-footer: "ECL 2.0 Licensed | Copyright © [YYYY] [Your Name]"
+footer: "ECL 2.0 Licensed | Copyright © 2022 Danilo Litvinenko"
 ---
 
 
-**Виконав(-ла):** 
+**Виконали студенти 2-го курсу, групи ІО-02:** 
 
-*студент(-ка) 2-го курсу, групи (шифр групи)*<span padding-right:5em></span> **[ім’я ПРІЗВИЩЕ] [Посилання email, tg, fb]**
+Бабич Валерій [telegram](https://t.me/valera_babich), email: [vakban1985@gmail.com](mailto:vakban1985@gmail.com)
+
+Литвиненко Данило [telegram](https://t.me/fastroof), email: [lytvdan@gmail.com](mailto:lytvdan@gmail.com)
+
+Грабенко Крістіна [telegram](https://t.me/grabenkoo), email: [kgrabenko03@gmail.com](mailto:kgrabenko03@gmail.com)
+
+Шевчук Іванна [telegram](https://t.me/iv_shevchuk), email: [ivannas762@gmail.com](mailto:ivannas762@gmail.com)
+
+Шумельчук Юрій [telegram](https://t.me/shumel234), email: [yura.shumel@gmail.com](mailto:yura.shumel@gmail.com)
+
+Степаненко Поліна [telegram](https://t.me/apollins), email: [polina.step3@icloud.com](mailto:polina.step3@icloud.com)
+
+Воловик Олександр [telegram](https://t.me/anhuza), email: [olieksandr.volovik@gmail.com](mailto:olieksandr.volovik@gmail.com)
 
 
 **Керівник**
