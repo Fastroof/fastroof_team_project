@@ -3,11 +3,11 @@ home: true
 actionText: Розпочати →
 actionLink: /intro/
 
-footer: "ECL 2.0 Licensed | Copyright © 2022 Danilo Litvinenko"
+footer: "ECL 2.0 Licensed | Copyright © 2022 Danylo Lytvynenko"
 ---
 
 
-**Виконали студенти 2-го курсу, групи ІО-02:** 
+**Виконали студенти 2-го курсу, групи ІО-02:**
 
 Бабич Валерій [telegram](https://t.me/valera_babich), email: [vakban1985@gmail.com](mailto:vakban1985@gmail.com)
 
@@ -26,7 +26,7 @@ footer: "ECL 2.0 Licensed | Copyright © 2022 Danilo Litvinenko"
 
 **Керівник**
 
-*доцент кафедри ОТ ФІОТ, к.т.н., доцент*<span padding-right:5em></span> **Андрій БОЛДАК** 
+*доцент кафедри ОТ ФІОТ, к.т.н., доцент*<span padding-right:5em></span> **Андрій БОЛДАК**
 
 [НТУУ "КИЇВСЬКИЙ ПОЛІТЕХНІЧНИЙ ІНСТИТУТ імені ІГОРЯ СІКОРСЬКОГО](https://kpi.ua/)
 
