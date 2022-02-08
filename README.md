@@ -11,7 +11,7 @@
 проекту, контактні дані виконавця, посилання на репо співвиконавців (за необхідністю).
 
 
-Шаблон публікування підготовлено з використанням [VuePress](https://vuepress.vuejs.org/), та стартера 
+Шаблон публікування підготовлено з використанням [VuePress](https://vuepress.vuejs.org/), та стартера
 [FriendlyUser/vuepress-theme-cool-starter](https://github.com/FriendlyUser/vuepress-theme-cool-starter).
 
 Щоб опублікувати проект у Github Pages, налаштовуємо Github Pages (гілка ```gh-pages```), змінюємо файл ```./publish.sh```
@@ -40,7 +40,7 @@ git commit -m 'deploy'
 # git push -f git@github.com:boldak/<USERNAME>.github.io.git master
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f https://github.com/<USERNAME>/dis-edu.git master:gh-pages
+git push -f https://github.com/Fastroof/fastroof_team_project.git master:gh-pages
 
 cd -
 
@@ -66,4 +66,4 @@ cd -
 - [Теми проєктів](./guidelines/themes.md)
 - [Методичні вказівки](./guidelines/guidelines.md)
 
-***Happy learning! Happy coding!*** 
+***Happy learning! Happy coding!***
