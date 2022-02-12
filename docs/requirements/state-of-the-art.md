@@ -114,18 +114,18 @@
 
 | Категорія | Критерій| CKAN | Gapminder |The World Bank DataBank | Google Public Data Explorer| Statistics Poland| Eurostat|
 |:----:| :-----------: |:-:| :-:|:-:|:-:|:-:|:-:|
-| **Functionality (функциональні вимоги)** | Створення, публікація, редагування датасетів | 🟢 |
-|  | Data visualisations tools  | 🟢 |
-|  | Roles and permissions | 🟢(користувачам в   “організаціях” можна надати ролі з різними дозволами)|
-|  | Пошук |  🟢(CKAN використовує Apache Solr як пошукову систему) |
-|  | Поділ даних за тегами, темами, критеріями | 🟢 (Є теги, датасети можна додати в групи)|
+| **Functionality (функциональні вимоги)** | Створення, публікація, редагування датасетів | 🟢 | 🔴 (можна "запропонувати" інформацію)  | ⚪️ | 🟢 | ⚪️ | ⚪️ |
+|  | Data visualisations tools  | 🟢 | 🟢 | 🟢 | 🟢 | 🟢 | 🟢 |
+|  | Roles and permissions | 🟢(користувачам в   “організаціях” можна надати ролі з різними дозволами)| 🔴(можна зареєструватися) | ⚪️ | ⚪️ | ⚪️ | 🔴(можна зареєструватися) |
+|  | Пошук |  🟢(CKAN використовує Apache Solr як пошукову систему) | 🟡 | 🟢 | 🟡 | 🟢 | 🟢
+|  | Поділ даних за тегами, темами, критеріями | 🟢 (Є теги, датасети можна додати в групи)| 🟢 | 🟢 | 🟡 | 🟢 | 🟢 |
 | **Usability (вимоги до зручності роботи)** | Підтримка англійської мови | 🟢 | 🟢 | 🟢 | 🟢 | 🟢 | 🟢 |
 |  | Наявність гайду з користування сайтом (Документація)| 🟢(http://docs.ckan.org/en/2.9/) | 🟡 (https://www.gapminder.org/data/documentation/)| ⚪️ | 🟢 | ⚪️ | 🟢 (https://ec.europa.eu/eurostat/web/main/help/website-guide) |
 |  | UI/UX | 🟢 | 🟢 | 🟢 | 🟢 | 🟢 | 🟢 |
 | **Reliability (вимоги до надійності)** | License and attribution | 🟢  | 🟢 | 🟢 | 🟢 | 🟢 | 🟢 | 
-| **Performance (вимоги до продуктивності)** | оцінка за допомогою утиліти Lighthouse (від 0 до 100) | 🟡 84 | 🟡 89 | 🟡 72 |  🟡78 | 🔴48 | 🟡54 |
+| **Performance (вимоги до продуктивності)** | оцінка за допомогою утиліти Lighthouse (від 0 до 100) | 🟡 84 | 🔴 33 | 🔴 13  |  🔴 36 | 🔴26 | 🔴13 |
 | **Supportability (вимоги до підтримки)** | Feedback opportunity | 🟢 | 🟢 | 🟢 | 🟢 | 🟢 | 🟢 |
-| | Актуальність даних | ⚪️ | 🟡 | 🟡 | 🟡 | 🟢 | 🟢 | 
+| | Актуальність даних | ⚪️ | 🟡 | 🟡(інформація оновлюється раз у рік) | 🟡  | 🟢 | 🟢 | 
 
 ## Висновки
 
@@ -143,3 +143,6 @@
 
 [https://ckan.org/](https://ckan.org/)
 
+[https://www.gapminder.org/data/documentation/](https://www.gapminder.org/data/documentation/)
+
+[https://ec.europa.eu/eurostat/web/main/help/website-guide](https://ec.europa.eu/eurostat/web/main/help/website-guide)
