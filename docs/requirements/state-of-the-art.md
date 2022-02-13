@@ -155,5 +155,7 @@
 [https://www.gapminder.org/data/documentation/](https://www.gapminder.org/data/documentation/)
 
 [https://ec.europa.eu/eurostat/web/main/help/website-guide](https://ec.europa.eu/eurostat/web/main/help/website-guide)
+
 [https://docs.microsoft.com/uk-ua/powerapps/maker/data-platform/data-platform-intro](https://docs.microsoft.com/uk-ua/powerapps/maker/data-platform/data-platform-intro)
+
 [https://docs.microsoft.com/uk-ua/powerapps/maker/data-platform/why-dataverse-overview](https://docs.microsoft.com/uk-ua/powerapps/maker/data-platform/why-dataverse-overview)
