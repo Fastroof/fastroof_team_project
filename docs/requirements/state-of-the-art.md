@@ -159,7 +159,7 @@ CKAN — це DMS (система керування даними) з відкр
 |  | Наявність гайду з користування сайтом (Документація)| 🟢 | 🟢(http://docs.ckan.org/en/2.9/) | 🟡 (https://www.gapminder.org/data/documentation/)| ⚪️ | 🟢 | ⚪️ | 🟢 (https://ec.europa.eu/eurostat/web/main/help/website-guide) |
 |  | UI/UX | 🟢 | 🟢 | 🟢 | 🟢 | 🟢 | 🟢 |
 | **Reliability (вимоги до надійності)** | License and attribution | 🟢 | 🟢  | 🟢 | 🟢 | 🟢 | 🟢 | 🟢 |
-| **Performance (вимоги до продуктивності)** | оцінка за допомогою утиліти Lighthouse (від 0 до 100) | 🟢 | 🟡 | 🟡 | 🟡  |  🟡 | 🟡 | 🔴 |
+| **Performance (вимоги до продуктивності)** | оцінка за допомогою утиліти Lighthouse (від 0 до 100) | 🟢 | 🟡 | 🔴 | 🔴  |  🔴 | 🔴 | 🔴 |
 | **Supportability (вимоги до підтримки)** | Feedback opportunity | 🟢 | 🟡 | 🟢 | 🟢 | 🟢 | 🟢 | 🟢 |
 | | Актуальність даних | 🟢 | ⚪️ | 🟡 | 🟡(інформація оновлюється раз у рік) | 🟡  | 🟢 | 🟢 |
 
