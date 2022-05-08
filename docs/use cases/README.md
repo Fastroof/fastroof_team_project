@@ -1,16 +1,8 @@
 # Модель прецедентів
 
-В цьому файлі необхідно перелічити всі документи, розроблені в проекті та дати посилання на них.
+Вбудовування зображень діаграм здійснюється з використанням сервісу [plantuml.com](https://plantuml.com/).
 
-*Модель прецедентів повинна містити загальні оглядові діаграми та специфікації прецедентів.*
-
-
-
-Вбудовування зображень діаграм здійснюється з використанням сервісу [plantuml.com](https://plantuml.com/). 
-
-В markdown-файлі використовується опис діаграми
-
-```md
+## Діаграма прецедентів
 
 <center style="
     border-radius:4px;
@@ -20,130 +12,55 @@
 >
 
 @startuml
+    actor User
+    actor Moderator
 
-    right header
-        <font size=24 color=black>Package: <b>UCD_3.0
-    end header
+    usecase "<b>FTP_AUTH_1\nРеєстрація, авторизація" as FTP_AUTH_1
+    usecase "<b>FTP_AUTH_1.1\nРеєстрація нового користувача" as FTP_AUTH_1.1
+    usecase "<b>FTP_AUTH_1.2\nВхід користувача в Систему" as FTP_AUTH_1.2
 
-    title
-        <font size=18 color=black>UC_8. Редагувати конфігурацію порталу
-        <font size=16 color=black>Діаграма прецедентів
-    end title
+    usecase "<b>FTP_AUTH_2.1\nСтворення запиту Користувача на перехід до Модератора" as FTP_AUTH_2.1
 
+    usecase "<b>FTP_AUTH_CHECK\nОбробка запиту на підвищення статусу" as FTP_AUTH_CHECK
+    usecase "<b>FTP_AUTH_CHECK_1.1\nПідтвердження запиту про перехід Користувача до Модератора" as FTP_AUTH_CHECK_1.1
+    usecase "<b>FTP_AUTH_CHECK_1.2\nЗапит про перехід Користувача до Модератора відхилено" as FTP_AUTH_CHECK_1.2
 
-    actor "Користувач" as User #eeeeaa
-    
-    package UCD_1{
-        usecase "<b>UC_1</b>\nПереглянути список \nзвітів" as UC_1 #aaeeaa
-    }
-    
-    usecase "<b>UC_1.1</b>\nЗастосувати фільтр" as UC_1.1
-    usecase "<b>UC_1.2</b>\nПереглянути метадані \nзвіту" as UC_1.2  
-    usecase "<b>UC_1.2.1</b>\nДати оцінку звіту" as UC_1.2.1  
-    usecase "<b>UC_1.2.2</b>\nПереглянути інформацію \nпро авторів звіту" as UC_1.2.2
-    
-    package UCD_1 {
-        usecase "<b>UC_4</b>\nВикликати звіт" as UC_4 #aaeeaa
-    }
-    
-    usecase "<b>UC_1.1.1</b>\n Використати \nпошукові теги" as UC_1.1.1  
-    usecase "<b>UC_1.1.2</b>\n Використати \nрядок пошуку" as UC_1.1.2
-    usecase "<b>UC_1.1.3</b>\n Використати \nавторів" as UC_1.1.3  
-    
-    
-    
-    User -> UC_1
-    UC_1.1 .u.> UC_1 :extends
-    UC_1.2 .u.> UC_1 :extends
-    UC_4 .d.> UC_1.2 :extends
-    UC_1.2 .> UC_1.2 :extends
-    UC_1.2.1 .u.> UC_1.2 :extends
-    UC_1.2.2 .u.> UC_1.2 :extends
-    UC_1 ..> UC_1.2.2 :extends
-    
-    
-    UC_1.1.1 -u-|> UC_1.1
-    UC_1.1.2 -u-|> UC_1.1
-    UC_1.1.3 -u-|> UC_1.1
-    
-    right footer
-        Аналітичний портал. Модель прецедентів.
-        НТУУ КПІ ім.І.Сікорського
-        Киів-2020
-    end footer
+    usecase "<b>FTP_DATA\nРобота з даними та пошук" as FTP_DATA
+    usecase "<b>FTP_DATA_1.1\nСтворення Запиту на додання даних" as FTP_DATA_1.1
+    usecase "<b>FTP_DATA_1.2\nРедагування даних користувачем та створення відповідного запиту" as FTP_DATA_1.2
+    usecase "<b>FTP_DATA_1.3\nВидалення даних власником" as FTP_DATA_1.3
+    usecase "<b>FTP_DATA_2.1\nПошук даних за фільтрами" as FTP_DATA_2.1
+    usecase "<b>FTP_DATA_2.1\nПошук даних за тегами" as FTP_DATA_2.2
+    usecase "<b>FTP_DATA_3.1\nЗавантаження Файлу з даними" as FTP_DATA_3.1
 
+    usecase "<b>FTP_DATA_CHECK\nОбробка запиту на данні" as FTP_DATA_CHECK
+    usecase "<b>FTP_DATA_CHECK_1.1\nОбробка запиту на додання даних" as FTP_DATA_CHECK_1.1
+    usecase "<b>FTP_DATA_CHECK_1.2\nОбробка запиту на редагування" as FTP_DATA_CHECK_1.2
+
+    Moderator --u-|> User
+
+    User -r-> FTP_DATA
+    User -l-> FTP_AUTH_1
+    User -u-> FTP_AUTH_2.1
+
+    Moderator -r-> FTP_DATA_CHECK
+    Moderator -l-> FTP_AUTH_CHECK
+
+    FTP_AUTH_1.1 .u.> FTP_AUTH_1 :extends
+    FTP_AUTH_1.2 .u.> FTP_AUTH_1 :extends
+
+    FTP_DATA_1.1 .u.> FTP_DATA :extends
+    FTP_DATA_1.2 .u.> FTP_DATA :extends
+    FTP_DATA_1.3 .u.> FTP_DATA :extends
+    FTP_DATA_2.1 .u.> FTP_DATA :extends
+    FTP_DATA_2.2 .u.> FTP_DATA :extends
+    FTP_DATA_3.1 .u.> FTP_DATA :extends
+
+    FTP_AUTH_CHECK_1.1 .u.> FTP_AUTH_CHECK :extends
+    FTP_AUTH_CHECK_1.2 .u.> FTP_AUTH_CHECK :extends
+
+    FTP_DATA_CHECK_1.1 .u.> FTP_DATA_CHECK :extends
+    FTP_DATA_CHECK_1.2 .u.> FTP_DATA_CHECK :extends
 @enduml
 
-**Діаграма прецедентів**
-
 </center>
-```
-
-яка буде відображена наступним чином
-
-<center style="
-    border-radius:4px;
-    border: 1px solid #cfd7e6;
-    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
-    padding: 1em;"
->
-
-@startuml
-
-    right header
-        <font size=24 color=black>Package: <b>UCD_3.0
-    end header
-
-    title
-        <font size=18 color=black>UC_8. Редагувати конфігурацію порталу
-        <font size=16 color=black>Діаграма прецедентів
-    end title
-
-
-    actor "Користувач" as User #eeeeaa
-    
-    package UCD_1{
-        usecase "<b>UC_1</b>\nПереглянути список \nзвітів" as UC_1 #aaeeaa
-    }
-    
-    usecase "<b>UC_1.1</b>\nЗастосувати фільтр" as UC_1.1
-    usecase "<b>UC_1.2</b>\nПереглянути метадані \nзвіту" as UC_1.2  
-    usecase "<b>UC_1.2.1</b>\nДати оцінку звіту" as UC_1.2.1  
-    usecase "<b>UC_1.2.2</b>\nПереглянути інформацію \nпро авторів звіту" as UC_1.2.2
-    
-    package UCD_1 {
-        usecase "<b>UC_4</b>\nВикликати звіт" as UC_4 #aaeeaa
-    }
-    
-    usecase "<b>UC_1.1.1</b>\n Використати \nпошукові теги" as UC_1.1.1  
-    usecase "<b>UC_1.1.2</b>\n Використати \nрядок пошуку" as UC_1.1.2
-    usecase "<b>UC_1.1.3</b>\n Використати \nавторів" as UC_1.1.3  
-    
-    
-    
-    User -> UC_1
-    UC_1.1 .u.> UC_1 :extends
-    UC_1.2 .u.> UC_1 :extends
-    UC_4 .d.> UC_1.2 :extends
-    UC_1.2 .> UC_1.2 :extends
-    UC_1.2.1 .u.> UC_1.2 :extends
-    UC_1.2.2 .u.> UC_1.2 :extends
-    UC_1 ..> UC_1.2.2 :extends
-    
-    
-    UC_1.1.1 -u-|> UC_1.1
-    UC_1.1.2 -u-|> UC_1.1
-    UC_1.1.3 -u-|> UC_1.1
-    
-    right footer
-        Аналітичний портал. Модель прецедентів.
-        НТУУ КПІ ім.І.Сікорського
-        Киів-2020
-    end footer
-
-@enduml
-
-**Діаграма прецедентів**
-
-</center>
-
