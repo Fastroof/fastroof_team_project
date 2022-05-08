@@ -16,51 +16,98 @@
     actor Moderator
 
     usecase "<b>FTP_AUTH_1\nРеєстрація, авторизація" as FTP_AUTH_1
+
+    usecase "<b>FTP_AUTH_2.1\nСтворення запиту Користувача\n на перехід до Модератора" as FTP_AUTH_2.1
+
+    usecase "<b>FTP_AUTH_CHECK\nОбробка запиту на підвищення статусу" as FTP_AUTH_CHECK
+
+    usecase "<b>FTP_DATA\nРобота з даними та пошук" as FTP_DATA
+
+    usecase "<b>FTP_DATA_CHECK\nОбробка запиту на данні" as FTP_DATA_CHECK
+
+    Moderator --u-|> User
+
+    User -r-> FTP_DATA
+    User -r-> FTP_AUTH_1
+    User -r-> FTP_AUTH_2.1
+
+    Moderator -r-> FTP_DATA_CHECK
+    Moderator -r-> FTP_AUTH_CHECK
+@enduml
+
+</center>
+
+## Схеми використання для користувача
+
+<center style="
+    border-radius:4px;
+    border: 1px solid #cfd7e6;
+    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
+    padding: 1em;"
+>
+
+@startuml
+actor User
+
+    usecase "<b>FTP_AUTH_1\nРеєстрація, авторизація" as FTP_AUTH_1
     usecase "<b>FTP_AUTH_1.1\nРеєстрація нового користувача" as FTP_AUTH_1.1
     usecase "<b>FTP_AUTH_1.2\nВхід користувача в Систему" as FTP_AUTH_1.2
 
-    usecase "<b>FTP_AUTH_2.1\nСтворення запиту Користувача на перехід до Модератора" as FTP_AUTH_2.1
-
-    usecase "<b>FTP_AUTH_CHECK\nОбробка запиту на підвищення статусу" as FTP_AUTH_CHECK
-    usecase "<b>FTP_AUTH_CHECK_1.1\nПідтвердження запиту про перехід Користувача до Модератора" as FTP_AUTH_CHECK_1.1
-    usecase "<b>FTP_AUTH_CHECK_1.2\nЗапит про перехід Користувача до Модератора відхилено" as FTP_AUTH_CHECK_1.2
+    usecase "<b>FTP_AUTH_2.1\nСтворення запиту Користувача\n на перехід до Модератора" as FTP_AUTH_2.1
 
     usecase "<b>FTP_DATA\nРобота з даними та пошук" as FTP_DATA
     usecase "<b>FTP_DATA_1.1\nСтворення Запиту на додання даних" as FTP_DATA_1.1
-    usecase "<b>FTP_DATA_1.2\nРедагування даних користувачем та створення відповідного запиту" as FTP_DATA_1.2
+    usecase "<b>FTP_DATA_1.2\nРедагування даних користувачем\n та створення відповідного запиту" as FTP_DATA_1.2
     usecase "<b>FTP_DATA_1.3\nВидалення даних власником" as FTP_DATA_1.3
     usecase "<b>FTP_DATA_2.1\nПошук даних за фільтрами" as FTP_DATA_2.1
     usecase "<b>FTP_DATA_2.1\nПошук даних за тегами" as FTP_DATA_2.2
     usecase "<b>FTP_DATA_3.1\nЗавантаження Файлу з даними" as FTP_DATA_3.1
 
-    usecase "<b>FTP_DATA_CHECK\nОбробка запиту на данні" as FTP_DATA_CHECK
-    usecase "<b>FTP_DATA_CHECK_1.1\nОбробка запиту на додання даних" as FTP_DATA_CHECK_1.1
-    usecase "<b>FTP_DATA_CHECK_1.2\nОбробка запиту на редагування" as FTP_DATA_CHECK_1.2
-
-    Moderator --u-|> User
-
     User -r-> FTP_DATA
     User -l-> FTP_AUTH_1
     User -u-> FTP_AUTH_2.1
 
+    FTP_AUTH_1.1 .d.> FTP_AUTH_1 :extends
+    FTP_AUTH_1.2 .u.> FTP_AUTH_1 :extends
+
+    FTP_DATA_1.1 ..> FTP_DATA :extends
+    FTP_DATA_1.2 .u.> FTP_DATA :extends
+    FTP_DATA_1.3 .l.> FTP_DATA :extends
+    FTP_DATA_2.1 ..> FTP_DATA :extends
+    FTP_DATA_2.2 .u.> FTP_DATA :extends
+    FTP_DATA_3.1 .u.> FTP_DATA :extends
+@enduml
+
+</center>
+
+## Схеми використання для модератора
+
+<center style="
+    border-radius:4px;
+    border: 1px solid #cfd7e6;
+    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
+    padding: 1em;"
+>
+
+@startuml
+    actor Moderator
+
+    usecase "<b>FTP_AUTH_CHECK\nОбробка запиту на підвищення статусу" as FTP_AUTH_CHECK
+    usecase "<b>FTP_AUTH_CHECK_1.1\nПідтвердження запиту про перехід\n Користувача до Модератора" as FTP_AUTH_CHECK_1.1
+    usecase "<b>FTP_AUTH_CHECK_1.2\nЗапит про перехід Користувача\n до Модератора відхилено" as FTP_AUTH_CHECK_1.2
+
+    usecase "<b>FTP_DATA_CHECK\nОбробка запиту на данні" as FTP_DATA_CHECK
+    usecase "<b>FTP_DATA_CHECK_1.1\nОбробка запиту на додання даних" as FTP_DATA_CHECK_1.1
+    usecase "<b>FTP_DATA_CHECK_1.2\nОбробка запиту на редагування" as FTP_DATA_CHECK_1.2
+
     Moderator -r-> FTP_DATA_CHECK
     Moderator -l-> FTP_AUTH_CHECK
 
-    FTP_AUTH_1.1 .u.> FTP_AUTH_1 :extends
-    FTP_AUTH_1.2 .u.> FTP_AUTH_1 :extends
-
-    FTP_DATA_1.1 .u.> FTP_DATA :extends
-    FTP_DATA_1.2 .u.> FTP_DATA :extends
-    FTP_DATA_1.3 .u.> FTP_DATA :extends
-    FTP_DATA_2.1 .u.> FTP_DATA :extends
-    FTP_DATA_2.2 .u.> FTP_DATA :extends
-    FTP_DATA_3.1 .u.> FTP_DATA :extends
-
-    FTP_AUTH_CHECK_1.1 .u.> FTP_AUTH_CHECK :extends
+    FTP_AUTH_CHECK_1.1 .d.> FTP_AUTH_CHECK :extends
     FTP_AUTH_CHECK_1.2 .u.> FTP_AUTH_CHECK :extends
 
     FTP_DATA_CHECK_1.1 .u.> FTP_DATA_CHECK :extends
-    FTP_DATA_CHECK_1.2 .u.> FTP_DATA_CHECK :extends
+    FTP_DATA_CHECK_1.2 .d.> FTP_DATA_CHECK :extends
 @enduml
 
 </center>
