@@ -165,4 +165,4 @@ edit_data_file_request "0,*"--*"1,1" data_file
 
 ## Реляційна схема
 
-![Alt text](RM.svg)
+![Alt text](RM.png)
