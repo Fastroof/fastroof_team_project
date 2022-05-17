@@ -3,191 +3,445 @@
 В рамках проекту розробляється:
 ## SQL-скрипт для створення на початкового наповнення бази даних
 
-create sequence user_id_seq
-    as integer;
+```sql
+--
+-- PostgreSQL database
+--
 
-create sequence "dataSet_id_seq"
-    as integer;
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
 
-create table if not exists roles
-(
-    id   serial
-        constraint roles_pk
-            primary key,
-    name text not null
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: add_data_file_requests; Type: TABLE; Schema: public; Owner: alxftmcoungich
+--
+
+CREATE TABLE public.add_data_file_requests (
+    id integer NOT NULL,
+    created_at date NOT NULL,
+    link_to_file text NOT NULL,
+    name text NOT NULL,
+    user_id integer NOT NULL,
+    status integer NOT NULL,
+    moderator_id integer,
+    data_set_id integer NOT NULL
 );
 
-create table if not exists users
-(
-    id         integer default nextval('user_id_seq'::regclass) not null
-        constraint user_pk
-            primary key,
-    role       integer                                          not null
-        constraint user_fk
-            references roles,
-    first_name text                                             not null,
-    last_name  text                                             not null,
-    email      text                                             not null,
-    password   text                                             not null
+
+ALTER TABLE public.add_data_file_requests OWNER TO alxftmcoungich;
+
+CREATE SEQUENCE public.add_data_file_requests_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER TABLE public.add_data_file_requests_id_seq OWNER TO alxftmcoungich;
+ALTER SEQUENCE public.add_data_file_requests_id_seq OWNED BY public.add_data_file_requests.id;
+
+--
+-- Name: data_sets; Type: TABLE; Schema: public; Owner: alxftmcoungich
+--
+
+CREATE TABLE public.data_sets (
+    id integer NOT NULL,
+    updated_at date NOT NULL,
+    created_at date NOT NULL,
+    tag_id integer,
+    name text NOT NULL,
+    owner_id integer NOT NULL
 );
 
-alter sequence user_id_seq owned by users.id;
 
-create unique index if not exists user_email_uindex
-    on users (email);
+ALTER TABLE public.data_sets OWNER TO alxftmcoungich;
 
-create unique index if not exists user_id_uindex
-    on users (id);
+CREATE SEQUENCE public."dataSet_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
 
-create unique index if not exists roles_id_uindex
-    on roles (id);
+ALTER TABLE public."dataSet_id_seq" OWNER TO alxftmcoungich;
+ALTER SEQUENCE public."dataSet_id_seq" OWNED BY public.data_sets.id;
 
-create unique index if not exists roles_name_uindex
-    on roles (name);
+--
+-- Name: data_files; Type: TABLE; Schema: public; Owner: alxftmcoungich
+--
 
-create table if not exists tags
-(
-    id       serial
-        constraint tags_pk
-            primary key,
-    name     text not null,
-    main_tag integer
+CREATE TABLE public.data_files (
+    id integer NOT NULL,
+    name text NOT NULL,
+    updated_at date NOT NULL,
+    created_at date NOT NULL,
+    data_set_id integer NOT NULL,
+    link_to_file text NOT NULL,
+    owner_id integer NOT NULL
 );
 
-create table if not exists data_sets
-(
-    id         integer default nextval('"dataSet_id_seq"'::regclass) not null
-        constraint dataset_pk
-            primary key,
-    updated_at date                                                  not null,
-    created_at date                                                  not null,
-    tag_id     integer
-        constraint data_set_fk
-            references tags,
-    name       text                                                  not null,
-    owner_id   integer                                               not null
-        constraint data_sets_fk_owner
-            references users
+
+ALTER TABLE public.data_files OWNER TO alxftmcoungich;
+
+CREATE SEQUENCE public.data_files_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER TABLE public.data_files_id_seq OWNER TO alxftmcoungich;
+ALTER SEQUENCE public.data_files_id_seq OWNED BY public.data_files.id;
+
+--
+-- Name: edit_data_file_requests; Type: TABLE; Schema: public; Owner: alxftmcoungich
+--
+
+CREATE TABLE public.edit_data_file_requests (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    status integer NOT NULL,
+    moderator_id integer,
+    data_file_id integer NOT NULL,
+    updated_at date NOT NULL,
+    link_to_file text NOT NULL,
+    name text NOT NULL
 );
 
-alter sequence "dataSet_id_seq" owned by data_sets.id;
 
-create unique index if not exists dataset_id_uindex
-    on data_sets (id);
+ALTER TABLE public.edit_data_file_requests OWNER TO alxftmcoungich;
 
-create unique index if not exists tags_name_uindex
-    on tags (name);
+CREATE SEQUENCE public.edit_data_file_requests_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
 
-create table if not exists data_files
-(
-    id           serial
-        constraint data_file_pk
-            primary key,
-    name         text    not null,
-    updated_at   date    not null,
-    created_at   date    not null,
-    data_set_id  integer not null
-        constraint data_file_data_set_id_fk
-            references data_sets,
-    link_to_file text    not null,
-    owner_id     integer not null
-        constraint data_files_fk_owner
-            references users
+ALTER TABLE public.edit_data_file_requests_id_seq OWNER TO alxftmcoungich;
+ALTER SEQUENCE public.edit_data_file_requests_id_seq OWNED BY public.edit_data_file_requests.id;
+
+--
+-- Name: request_statuses; Type: TABLE; Schema: public; Owner: alxftmcoungich
+--
+
+CREATE TABLE public.request_statuses (
+    id integer NOT NULL,
+    name text NOT NULL
 );
 
-create table if not exists request_statuses
-(
-    id   serial
-        constraint request_statuses_pk
-            primary key,
-    name text not null
-);
 
-create table if not exists role_change_requests
-(
-    id           serial
-        constraint role_change_requests_pk
-            primary key,
-    user_id      integer not null
-        constraint request_status_user_id_fk
-            references users,
-    moderator_id integer
-        constraint request_status_moderator_id_fk
-            references users,
-    status       integer not null
-        constraint role_change_request_status_fk
-            references request_statuses,
+ALTER TABLE public.request_statuses OWNER TO alxftmcoungich;
+
+CREATE SEQUENCE public.request_statuses_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER TABLE public.request_statuses_id_seq OWNER TO alxftmcoungich;
+ALTER SEQUENCE public.request_statuses_id_seq OWNED BY public.request_statuses.id;
+
+--
+-- Name: role_change_requests; Type: TABLE; Schema: public; Owner: alxftmcoungich
+--
+
+CREATE TABLE public.role_change_requests (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    moderator_id integer,
+    status integer NOT NULL,
     processed_at date
 );
 
-create unique index if not exists role_change_requests_id_uindex
-    on role_change_requests (id);
 
-create unique index if not exists request_statuses_id_uindex
-    on request_statuses (id);
+ALTER TABLE public.role_change_requests OWNER TO alxftmcoungich;
 
-create unique index if not exists request_statuses_name_uindex
-    on request_statuses (name);
+CREATE SEQUENCE public.role_change_requests_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
 
-create table if not exists add_data_file_requests
-(
-    id           serial
-        constraint add_data_file_requests_pk
-            primary key,
-    created_at   date    not null,
-    link_to_file text    not null,
-    name         text    not null,
-    user_id      integer not null
-        constraint add_data_file_requests_users_id_fk
-            references users,
-    status       integer not null
-        constraint add_data_file_requests_request_statuses_id_fk
-            references request_statuses,
-    moderator_id integer
-        constraint add_data_file_requests_users_id_fk_2
-            references users,
-    data_set_id  integer not null
-        constraint add_data_file_requests_data_sets_id_fk
-            references data_sets
+ALTER TABLE public.role_change_requests_id_seq OWNER TO alxftmcoungich;
+ALTER SEQUENCE public.role_change_requests_id_seq OWNED BY public.role_change_requests.id;
+
+--
+-- Name: roles; Type: TABLE; Schema: public; Owner: alxftmcoungich
+--
+
+CREATE TABLE public.roles (
+    id integer NOT NULL,
+    name text NOT NULL
 );
 
-create unique index if not exists add_data_file_requests_id_uindex
-    on add_data_file_requests (id);
 
-create table if not exists edit_data_file_requests
-(
-    id           serial
-        constraint edit_data_file_requests_pk
-            primary key,
-    user_id      integer not null
-        constraint edit_data_file_requests_users_id_fk
-            references users,
-    status       integer not null
-        constraint edit_data_file_requests_request_statuses_id_fk
-            references request_statuses,
-    moderator_id integer
-        constraint edit_data_file_requests_users_id_fk_2
-            references users,
-    data_file_id integer not null
-        constraint edit_data_file_requests_data_files_id_fk
-            references data_files,
-    updated_at   date    not null,
-    link_to_file text    not null,
-    name         text    not null
+ALTER TABLE public.roles OWNER TO alxftmcoungich;
+
+CREATE SEQUENCE public.roles_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER TABLE public.roles_id_seq OWNER TO alxftmcoungich;
+ALTER SEQUENCE public.roles_id_seq OWNED BY public.roles.id;
+
+--
+-- Name: tags; Type: TABLE; Schema: public; Owner: alxftmcoungich
+--
+
+CREATE TABLE public.tags (
+    id integer NOT NULL,
+    name text NOT NULL,
+    main_tag integer
 );
 
-create unique index if not exists edit_data_file_requests_id_uindex
-    on edit_data_file_requests (id);
 
-insert into public.request_statuses (id, name) values (1, 'Not processed');
-insert into public.request_statuses (id, name) values (2, 'Confirmed');
-insert into public.request_statuses (id, name) values (3, 'Declined');
-insert into public.role_change_requests (id, user_id, moderator_id, status, processed_at) values (1, 3, 1, 1, '2022-05-15');
-insert into public.roles (id, name) values (1, 'user');
-insert into public.roles (id, name) values (2, 'moderator');
-insert into public.tags (id, name, main_tag) values (1, 'all', null);
-insert into public.tags (id, name, main_tag) values (2, 'test', 1);
-insert into public.users (id, role, first_name, last_name, email, password) values (1, 2, 'Admin', 'Admin', 'admin@test.ua', '$2a$10$IQ0CFgVnezPfUM/GjNyCKOIw.SbybesHFkxmsPvmqGPIfkuC.Tak2');
-insert into public.users (id, role, first_name, last_name, email, password) values (3, 2, 'Admin', '2', 'admin2@test.ua', '$2a$10$IQ0CFgVnezPfUM/GjNyCKOIw.SbybesHFkxmsPvmqGPIfkuC.Tak2');
+ALTER TABLE public.tags OWNER TO alxftmcoungich;
+
+CREATE SEQUENCE public.tags_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER TABLE public.tags_id_seq OWNER TO alxftmcoungich;
+ALTER SEQUENCE public.tags_id_seq OWNED BY public.tags.id;
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: alxftmcoungich
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    role integer NOT NULL,
+    first_name text NOT NULL,
+    last_name text NOT NULL,
+    email text NOT NULL,
+    password text NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO alxftmcoungich;
+
+CREATE SEQUENCE public.user_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER TABLE public.user_id_seq OWNER TO alxftmcoungich;
+ALTER SEQUENCE public.user_id_seq OWNED BY public.users.id;
+
+--
+-- DEFAULTs
+--
+
+ALTER TABLE ONLY public.add_data_file_requests ALTER COLUMN id SET DEFAULT nextval('public.add_data_file_requests_id_seq'::regclass);
+ALTER TABLE ONLY public.data_files ALTER COLUMN id SET DEFAULT nextval('public.data_files_id_seq'::regclass);
+ALTER TABLE ONLY public.data_sets ALTER COLUMN id SET DEFAULT nextval('public."dataSet_id_seq"'::regclass);
+ALTER TABLE ONLY public.edit_data_file_requests ALTER COLUMN id SET DEFAULT nextval('public.edit_data_file_requests_id_seq'::regclass);
+ALTER TABLE ONLY public.request_statuses ALTER COLUMN id SET DEFAULT nextval('public.request_statuses_id_seq'::regclass);
+ALTER TABLE ONLY public.role_change_requests ALTER COLUMN id SET DEFAULT nextval('public.role_change_requests_id_seq'::regclass);
+ALTER TABLE ONLY public.roles ALTER COLUMN id SET DEFAULT nextval('public.roles_id_seq'::regclass);
+ALTER TABLE ONLY public.tags ALTER COLUMN id SET DEFAULT nextval('public.tags_id_seq'::regclass);
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.user_id_seq'::regclass);
+
+--
+-- Type: TABLEs DATA; Schema: public; Owner: alxftmcoungich
+--
+
+COPY public.add_data_file_requests (id, created_at, link_to_file, name, user_id, status, moderator_id, data_set_id) FROM stdin;
+\.
+
+COPY public.data_files (id, name, updated_at, created_at, data_set_id, link_to_file, owner_id) FROM stdin;
+\.
+
+COPY public.data_sets (id, updated_at, created_at, tag_id, name, owner_id) FROM stdin;
+\.
+
+COPY public.edit_data_file_requests (id, user_id, status, moderator_id, data_file_id, updated_at, link_to_file, name) FROM stdin;
+\.
+
+COPY public.request_statuses (id, name) FROM stdin;
+1	Not processed
+2	Confirmed
+3	Declined
+\.
+
+COPY public.role_change_requests (id, user_id, moderator_id, status, processed_at) FROM stdin;
+1	3	1	1	2022-05-15
+\.
+
+COPY public.roles (id, name) FROM stdin;
+1	user
+2	moderator
+\.
+
+COPY public.tags (id, name, main_tag) FROM stdin;
+1	all	\N
+2	test	1
+\.
+
+COPY public.users (id, role, first_name, last_name, email, password) FROM stdin;
+1	2	Admin	Admin	admin@test.ua	$2a$10$IQ0CFgVnezPfUM/GjNyCKOIw.SbybesHFkxmsPvmqGPIfkuC.Tak2
+3	2	Admin	2	admin2@test.ua	$2a$10$IQ0CFgVnezPfUM/GjNyCKOIw.SbybesHFkxmsPvmqGPIfkuC.Tak2
+\.
+
+--
+-- Type: SEQUENCE SETs; Schema: public; Owner: alxftmcoungich
+--
+
+SELECT pg_catalog.setval('public.add_data_file_requests_id_seq', 1, false);
+SELECT pg_catalog.setval('public."dataSet_id_seq"', 1, false);
+SELECT pg_catalog.setval('public.data_files_id_seq', 1, false);
+SELECT pg_catalog.setval('public.edit_data_file_requests_id_seq', 1, false);
+SELECT pg_catalog.setval('public.request_statuses_id_seq', 1, false);
+SELECT pg_catalog.setval('public.role_change_requests_id_seq', 1, true);
+SELECT pg_catalog.setval('public.roles_id_seq', 2, true);
+SELECT pg_catalog.setval('public.tags_id_seq', 2, true);
+SELECT pg_catalog.setval('public.user_id_seq', 3, true);
+
+--
+-- Type: CONSTRAINTs; Schema: public; Owner: alxftmcoungich
+--
+
+ALTER TABLE ONLY public.add_data_file_requests
+    ADD CONSTRAINT add_data_file_requests_pk PRIMARY KEY (id);
+
+ALTER TABLE ONLY public.data_files
+    ADD CONSTRAINT data_file_pk PRIMARY KEY (id);
+
+ALTER TABLE ONLY public.data_sets
+    ADD CONSTRAINT dataset_pk PRIMARY KEY (id);
+
+ALTER TABLE ONLY public.edit_data_file_requests
+    ADD CONSTRAINT edit_data_file_requests_pk PRIMARY KEY (id);
+
+ALTER TABLE ONLY public.request_statuses
+    ADD CONSTRAINT request_statuses_pk PRIMARY KEY (id);
+
+ALTER TABLE ONLY public.role_change_requests
+    ADD CONSTRAINT role_change_requests_pk PRIMARY KEY (id);
+
+ALTER TABLE ONLY public.roles
+    ADD CONSTRAINT roles_pk PRIMARY KEY (id);
+
+ALTER TABLE ONLY public.tags
+    ADD CONSTRAINT tags_pk PRIMARY KEY (id);
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT user_pk PRIMARY KEY (id);
+
+--
+-- Type: INDEXs; Schema: public; Owner: alxftmcoungich
+--
+
+CREATE UNIQUE INDEX add_data_file_requests_id_uindex ON public.add_data_file_requests USING btree (id);
+CREATE UNIQUE INDEX dataset_id_uindex ON public.data_sets USING btree (id);
+CREATE UNIQUE INDEX edit_data_file_requests_id_uindex ON public.edit_data_file_requests USING btree (id);
+CREATE UNIQUE INDEX request_statuses_id_uindex ON public.request_statuses USING btree (id);
+CREATE UNIQUE INDEX request_statuses_name_uindex ON public.request_statuses USING btree (name);
+CREATE UNIQUE INDEX role_change_requests_id_uindex ON public.role_change_requests USING btree (id);
+CREATE UNIQUE INDEX roles_id_uindex ON public.roles USING btree (id);
+CREATE UNIQUE INDEX roles_name_uindex ON public.roles USING btree (name);
+CREATE UNIQUE INDEX tags_name_uindex ON public.tags USING btree (name);
+CREATE UNIQUE INDEX user_email_uindex ON public.users USING btree (email);
+CREATE UNIQUE INDEX user_id_uindex ON public.users USING btree (id);
+
+--
+-- Type: FK CONSTRAINTs; Schema: public; Owner: alxftmcoungich
+--
+
+ALTER TABLE ONLY public.add_data_file_requests
+    ADD CONSTRAINT add_data_file_requests_data_sets_id_fk FOREIGN KEY (data_set_id) REFERENCES public.data_sets(id);
+
+ALTER TABLE ONLY public.add_data_file_requests
+    ADD CONSTRAINT add_data_file_requests_request_statuses_id_fk FOREIGN KEY (status) REFERENCES public.request_statuses(id);
+
+ALTER TABLE ONLY public.add_data_file_requests
+    ADD CONSTRAINT add_data_file_requests_users_id_fk FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+ALTER TABLE ONLY public.add_data_file_requests
+    ADD CONSTRAINT add_data_file_requests_users_id_fk_2 FOREIGN KEY (moderator_id) REFERENCES public.users(id);
+
+ALTER TABLE ONLY public.data_files
+    ADD CONSTRAINT data_file_data_set_id_fk FOREIGN KEY (data_set_id) REFERENCES public.data_sets(id);
+
+ALTER TABLE ONLY public.data_files
+    ADD CONSTRAINT data_files_fk_owner FOREIGN KEY (owner_id) REFERENCES public.users(id);
+
+ALTER TABLE ONLY public.data_sets
+    ADD CONSTRAINT data_set_fk FOREIGN KEY (tag_id) REFERENCES public.tags(id);
+
+ALTER TABLE ONLY public.data_sets
+    ADD CONSTRAINT data_sets_fk_owner FOREIGN KEY (owner_id) REFERENCES public.users(id);
+
+ALTER TABLE ONLY public.edit_data_file_requests
+    ADD CONSTRAINT edit_data_file_requests_data_files_id_fk FOREIGN KEY (data_file_id) REFERENCES public.data_files(id);
+
+ALTER TABLE ONLY public.edit_data_file_requests
+    ADD CONSTRAINT edit_data_file_requests_request_statuses_id_fk FOREIGN KEY (status) REFERENCES public.request_statuses(id);
+
+ALTER TABLE ONLY public.edit_data_file_requests
+    ADD CONSTRAINT edit_data_file_requests_users_id_fk FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+ALTER TABLE ONLY public.edit_data_file_requests
+    ADD CONSTRAINT edit_data_file_requests_users_id_fk_2 FOREIGN KEY (moderator_id) REFERENCES public.users(id);
+
+ALTER TABLE ONLY public.role_change_requests
+    ADD CONSTRAINT request_status_moderator_id_fk FOREIGN KEY (moderator_id) REFERENCES public.users(id);
+
+ALTER TABLE ONLY public.role_change_requests
+    ADD CONSTRAINT request_status_user_id_fk FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+ALTER TABLE ONLY public.role_change_requests
+    ADD CONSTRAINT role_change_request_status_fk FOREIGN KEY (status) REFERENCES public.request_statuses(id);
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT user_fk FOREIGN KEY (role) REFERENCES public.roles(id);
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: alxftmcoungich
+--
+
+REVOKE ALL ON SCHEMA public FROM postgres;
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+GRANT ALL ON SCHEMA public TO alxftmcoungich;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+--
+-- Name: LANGUAGE plpgsql; Type: ACL; Schema: -; Owner: postgres
+--
+
+GRANT ALL ON LANGUAGE plpgsql TO alxftmcoungich;
+
+```
 
 ## RESTfull сервіс для управління даними
