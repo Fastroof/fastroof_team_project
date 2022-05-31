@@ -3,7 +3,9 @@
 В рамках проекту розробляється:
 ## SQL-скрипт для створення на початкового наповнення бази даних
 <details>
+
   <summary>Розгорнути повний текст скрипту</summary>
+
   ```sql
   --
   -- PostgreSQL database
@@ -444,6 +446,7 @@
   GRANT ALL ON LANGUAGE plpgsql TO alxftmcoungich;
 
   ```
+  
 </details>
 
 ## RESTfull сервіс для управління даними
