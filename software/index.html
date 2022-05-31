@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Реалізація інформаційного та програмного забезпечення | Система управління відкритими даними</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/fastroof_team_project/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="description" content="Лабораторні роботи з дисципліни &quot;Організація баз даних&quot;">
+    
+    <link rel="preload" href="/fastroof_team_project/assets/css/0.styles.16ce0b6a.css" as="style"><link rel="preload" href="/fastroof_team_project/assets/js/app.2c350d7c.js" as="script"><link rel="preload" href="/fastroof_team_project/assets/js/2.ef2e7497.js" as="script"><link rel="preload" href="/fastroof_team_project/assets/js/23.9d0ae498.js" as="script"><link rel="prefetch" href="/fastroof_team_project/assets/js/10.c0de19bb.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/11.919960be.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/12.2f43993b.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/13.58f218bb.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/14.7b36570b.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/15.7bf52828.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/16.fe894f7a.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/17.01e09e1c.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/18.98598e99.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/19.9dc6e5da.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/20.d0538647.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/21.9b3d0a18.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/22.578d85bd.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/24.679a89a5.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/25.09c60e2e.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/26.6dec4e79.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/3.116e57a2.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/4.bb138b11.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/5.5209d4b7.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/6.70762707.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/7.015b94f5.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/8.45c6b9a5.js"><link rel="prefetch" href="/fastroof_team_project/assets/js/9.47f23d59.js">
+    <link rel="stylesheet" href="/fastroof_team_project/assets/css/0.styles.16ce0b6a.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/fastroof_team_project/" class="home-link router-link-active"><!----> <span class="site-name">Система управління відкритими даними</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/fastroof_team_project/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/Fastroof/fastroof_team_project" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/fastroof_team_project/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/Fastroof/fastroof_team_project" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/fastroof_team_project/intro/" class="sidebar-link">Вступ</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/fastroof_team_project/requirements/" class="sidebar-heading clickable"><span>Розроблення загальних вимог до системи</span> <span class="arrow right"></span></a> <!----></section></li><li><a href="/fastroof_team_project/use%20cases/" class="sidebar-link">Розроблення вимог до функціональности системи</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/fastroof_team_project/use%20cases/#діаграма-прецедентів" class="sidebar-link">Діаграма прецедентів</a></li><li class="sidebar-sub-header"><a href="/fastroof_team_project/use%20cases/#схеми-використання-для-користувача" class="sidebar-link">Схеми використання для користувача</a></li><li class="sidebar-sub-header"><a href="/fastroof_team_project/use%20cases/#схеми-використання-для-модератора" class="sidebar-link">Схеми використання для модератора</a></li><li class="sidebar-sub-header"><a href="/fastroof_team_project/use%20cases/#сценаріі" class="sidebar-link">Сценарії</a></li></ul></li><li><a href="/fastroof_team_project/design/" class="sidebar-link">Проектування інформаційного забезпечення</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/fastroof_team_project/design/#модель-бізнес-об-єктів" class="sidebar-link">Модель бізнес-об'єктів</a></li><li class="sidebar-sub-header"><a href="/fastroof_team_project/design/#er-модель" class="sidebar-link">ER-модель</a></li><li class="sidebar-sub-header"><a href="/fastroof_team_project/design/#реляціина-схема" class="sidebar-link">Реляційна схема</a></li></ul></li><li><a href="/fastroof_team_project/software/" aria-current="page" class="active sidebar-link">Реалізація інформаційного та програмного забезпечення</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/fastroof_team_project/software/#sql-скрипт-для-створення-на-початкового-наповнення-бази-даних" class="sidebar-link">SQL-скрипт для створення на початкового наповнення бази даних</a></li><li class="sidebar-sub-header"><a href="/fastroof_team_project/software/#restfull-сервіс-для-управління-даними" class="sidebar-link">RESTfull сервіс для управління даними</a></li></ul></li><li><a href="/fastroof_team_project/test/" class="sidebar-link">Тестування працездатності системи</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/fastroof_team_project/test/#головна" class="sidebar-link">Головна</a></li><li class="sidebar-sub-header"><a href="/fastroof_team_project/test/#реєстрація" class="sidebar-link">Реєстрація</a></li><li class="sidebar-sub-header"><a href="/fastroof_team_project/test/#вхід" class="sidebar-link">Вхід</a></li><li class="sidebar-sub-header"><a href="/fastroof_team_project/test/#новии-датасет" class="sidebar-link">Новий датасет</a></li><li class="sidebar-sub-header"><a href="/fastroof_team_project/test/#моі-датасети" class="sidebar-link">Мої датасети</a></li><li class="sidebar-sub-header"><a href="/fastroof_team_project/test/#переити-до-модератора" class="sidebar-link">Перейти до модератора</a></li><li class="sidebar-sub-header"><a href="/fastroof_team_project/test/#функціі-модератора" class="sidebar-link">Функції модератора</a></li></ul></li><li><a href="/fastroof_team_project/conclusion/" class="sidebar-link">Висновки</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="реалізація-інформаціиного-та-програмного-забезпечення"><a href="#реалізація-інформаціиного-та-програмного-забезпечення" class="header-anchor">#</a> Реалізація інформаційного та програмного забезпечення</h1> <p>В рамках проекту розробляється:</p> <h2 id="sql-скрипт-для-створення-на-початкового-наповнення-бази-даних"><a href="#sql-скрипт-для-створення-на-початкового-наповнення-бази-даних" class="header-anchor">#</a> SQL-скрипт для створення на початкового наповнення бази даних</h2> <details><summary>Розгорнути повний текст скрипту</summary> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">--</span>
+<span class="token comment">-- PostgreSQL database</span>
+<span class="token comment">--</span>
+
+<span class="token keyword">SET</span> statement_timeout <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">SET</span> lock_timeout <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">SET</span> idle_in_transaction_session_timeout <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">SET</span> client_encoding <span class="token operator">=</span> <span class="token string">'UTF8'</span><span class="token punctuation">;</span>
+<span class="token keyword">SET</span> standard_conforming_strings <span class="token operator">=</span> <span class="token keyword">on</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> pg_catalog<span class="token punctuation">.</span>set_config<span class="token punctuation">(</span><span class="token string">'search_path'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SET</span> check_function_bodies <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token keyword">SET</span> xmloption <span class="token operator">=</span> content<span class="token punctuation">;</span>
+<span class="token keyword">SET</span> client_min_messages <span class="token operator">=</span> warning<span class="token punctuation">;</span>
+<span class="token keyword">SET</span> row_security <span class="token operator">=</span> <span class="token keyword">off</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SET</span> default_tablespace <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SET</span> default_table_access_method <span class="token operator">=</span> heap<span class="token punctuation">;</span>
+
+<span class="token comment">--</span>
+<span class="token comment">-- Name: add_data_file_requests; Type: TABLE; Schema: public; Owner: alxftmcoungich</span>
+<span class="token comment">--</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>add_data_file_requests <span class="token punctuation">(</span>
+    id <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    created_at <span class="token keyword">date</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    link_to_file <span class="token keyword">text</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    name <span class="token keyword">text</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    user_id <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token keyword">status</span> <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    moderator_id <span class="token keyword">integer</span><span class="token punctuation">,</span>
+    data_set_id <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>add_data_file_requests OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span>add_data_file_requests_id_seq
+    <span class="token keyword">AS</span> <span class="token keyword">integer</span>
+    <span class="token keyword">START</span> <span class="token keyword">WITH</span> <span class="token number">1</span>
+    INCREMENT <span class="token keyword">BY</span> <span class="token number">1</span>
+    <span class="token keyword">NO</span> MINVALUE
+    <span class="token keyword">NO</span> MAXVALUE
+    CACHE <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>add_data_file_requests_id_seq OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span>add_data_file_requests_id_seq OWNED <span class="token keyword">BY</span> <span class="token keyword">public</span><span class="token punctuation">.</span>add_data_file_requests<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+
+<span class="token comment">--</span>
+<span class="token comment">-- Name: data_sets; Type: TABLE; Schema: public; Owner: alxftmcoungich</span>
+<span class="token comment">--</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>data_sets <span class="token punctuation">(</span>
+    id <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    updated_at <span class="token keyword">date</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    created_at <span class="token keyword">date</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    tag_id <span class="token keyword">integer</span><span class="token punctuation">,</span>
+    name <span class="token keyword">text</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    owner_id <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>data_sets OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span><span class="token string">&quot;dataSet_id_seq&quot;</span>
+    <span class="token keyword">AS</span> <span class="token keyword">integer</span>
+    <span class="token keyword">START</span> <span class="token keyword">WITH</span> <span class="token number">1</span>
+    INCREMENT <span class="token keyword">BY</span> <span class="token number">1</span>
+    <span class="token keyword">NO</span> MINVALUE
+    <span class="token keyword">NO</span> MAXVALUE
+    CACHE <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span><span class="token string">&quot;dataSet_id_seq&quot;</span> OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span><span class="token string">&quot;dataSet_id_seq&quot;</span> OWNED <span class="token keyword">BY</span> <span class="token keyword">public</span><span class="token punctuation">.</span>data_sets<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+
+<span class="token comment">--</span>
+<span class="token comment">-- Name: data_files; Type: TABLE; Schema: public; Owner: alxftmcoungich</span>
+<span class="token comment">--</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>data_files <span class="token punctuation">(</span>
+    id <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    name <span class="token keyword">text</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    updated_at <span class="token keyword">date</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    created_at <span class="token keyword">date</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    data_set_id <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    link_to_file <span class="token keyword">text</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    owner_id <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>data_files OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span>data_files_id_seq
+    <span class="token keyword">AS</span> <span class="token keyword">integer</span>
+    <span class="token keyword">START</span> <span class="token keyword">WITH</span> <span class="token number">1</span>
+    INCREMENT <span class="token keyword">BY</span> <span class="token number">1</span>
+    <span class="token keyword">NO</span> MINVALUE
+    <span class="token keyword">NO</span> MAXVALUE
+    CACHE <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>data_files_id_seq OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span>data_files_id_seq OWNED <span class="token keyword">BY</span> <span class="token keyword">public</span><span class="token punctuation">.</span>data_files<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+
+<span class="token comment">--</span>
+<span class="token comment">-- Name: edit_data_file_requests; Type: TABLE; Schema: public; Owner: alxftmcoungich</span>
+<span class="token comment">--</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>edit_data_file_requests <span class="token punctuation">(</span>
+    id <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    user_id <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token keyword">status</span> <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    moderator_id <span class="token keyword">integer</span><span class="token punctuation">,</span>
+    data_file_id <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    updated_at <span class="token keyword">date</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    link_to_file <span class="token keyword">text</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    name <span class="token keyword">text</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>edit_data_file_requests OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span>edit_data_file_requests_id_seq
+    <span class="token keyword">AS</span> <span class="token keyword">integer</span>
+    <span class="token keyword">START</span> <span class="token keyword">WITH</span> <span class="token number">1</span>
+    INCREMENT <span class="token keyword">BY</span> <span class="token number">1</span>
+    <span class="token keyword">NO</span> MINVALUE
+    <span class="token keyword">NO</span> MAXVALUE
+    CACHE <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>edit_data_file_requests_id_seq OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span>edit_data_file_requests_id_seq OWNED <span class="token keyword">BY</span> <span class="token keyword">public</span><span class="token punctuation">.</span>edit_data_file_requests<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+
+<span class="token comment">--</span>
+<span class="token comment">-- Name: request_statuses; Type: TABLE; Schema: public; Owner: alxftmcoungich</span>
+<span class="token comment">--</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>request_statuses <span class="token punctuation">(</span>
+    id <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    name <span class="token keyword">text</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>request_statuses OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span>request_statuses_id_seq
+    <span class="token keyword">AS</span> <span class="token keyword">integer</span>
+    <span class="token keyword">START</span> <span class="token keyword">WITH</span> <span class="token number">1</span>
+    INCREMENT <span class="token keyword">BY</span> <span class="token number">1</span>
+    <span class="token keyword">NO</span> MINVALUE
+    <span class="token keyword">NO</span> MAXVALUE
+    CACHE <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>request_statuses_id_seq OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span>request_statuses_id_seq OWNED <span class="token keyword">BY</span> <span class="token keyword">public</span><span class="token punctuation">.</span>request_statuses<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+
+<span class="token comment">--</span>
+<span class="token comment">-- Name: role_change_requests; Type: TABLE; Schema: public; Owner: alxftmcoungich</span>
+<span class="token comment">--</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>role_change_requests <span class="token punctuation">(</span>
+    id <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    user_id <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    moderator_id <span class="token keyword">integer</span><span class="token punctuation">,</span>
+    <span class="token keyword">status</span> <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    processed_at <span class="token keyword">date</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>role_change_requests OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span>role_change_requests_id_seq
+    <span class="token keyword">AS</span> <span class="token keyword">integer</span>
+    <span class="token keyword">START</span> <span class="token keyword">WITH</span> <span class="token number">1</span>
+    INCREMENT <span class="token keyword">BY</span> <span class="token number">1</span>
+    <span class="token keyword">NO</span> MINVALUE
+    <span class="token keyword">NO</span> MAXVALUE
+    CACHE <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>role_change_requests_id_seq OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span>role_change_requests_id_seq OWNED <span class="token keyword">BY</span> <span class="token keyword">public</span><span class="token punctuation">.</span>role_change_requests<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+
+<span class="token comment">--</span>
+<span class="token comment">-- Name: roles; Type: TABLE; Schema: public; Owner: alxftmcoungich</span>
+<span class="token comment">--</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>roles <span class="token punctuation">(</span>
+    id <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    name <span class="token keyword">text</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>roles OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span>roles_id_seq
+    <span class="token keyword">AS</span> <span class="token keyword">integer</span>
+    <span class="token keyword">START</span> <span class="token keyword">WITH</span> <span class="token number">1</span>
+    INCREMENT <span class="token keyword">BY</span> <span class="token number">1</span>
+    <span class="token keyword">NO</span> MINVALUE
+    <span class="token keyword">NO</span> MAXVALUE
+    CACHE <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>roles_id_seq OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span>roles_id_seq OWNED <span class="token keyword">BY</span> <span class="token keyword">public</span><span class="token punctuation">.</span>roles<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+
+<span class="token comment">--</span>
+<span class="token comment">-- Name: tags; Type: TABLE; Schema: public; Owner: alxftmcoungich</span>
+<span class="token comment">--</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>tags <span class="token punctuation">(</span>
+    id <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    name <span class="token keyword">text</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    main_tag <span class="token keyword">integer</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>tags OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span>tags_id_seq
+    <span class="token keyword">AS</span> <span class="token keyword">integer</span>
+    <span class="token keyword">START</span> <span class="token keyword">WITH</span> <span class="token number">1</span>
+    INCREMENT <span class="token keyword">BY</span> <span class="token number">1</span>
+    <span class="token keyword">NO</span> MINVALUE
+    <span class="token keyword">NO</span> MAXVALUE
+    CACHE <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>tags_id_seq OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span>tags_id_seq OWNED <span class="token keyword">BY</span> <span class="token keyword">public</span><span class="token punctuation">.</span>tags<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+
+<span class="token comment">--</span>
+<span class="token comment">-- Name: users; Type: TABLE; Schema: public; Owner: alxftmcoungich</span>
+<span class="token comment">--</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>users <span class="token punctuation">(</span>
+    id <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    role <span class="token keyword">integer</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    first_name <span class="token keyword">text</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    last_name <span class="token keyword">text</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    email <span class="token keyword">text</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    password <span class="token keyword">text</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>users OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span>user_id_seq
+    <span class="token keyword">AS</span> <span class="token keyword">integer</span>
+    <span class="token keyword">START</span> <span class="token keyword">WITH</span> <span class="token number">1</span>
+    INCREMENT <span class="token keyword">BY</span> <span class="token number">1</span>
+    <span class="token keyword">NO</span> MINVALUE
+    <span class="token keyword">NO</span> MAXVALUE
+    CACHE <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token keyword">public</span><span class="token punctuation">.</span>user_id_seq OWNER <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> SEQUENCE <span class="token keyword">public</span><span class="token punctuation">.</span>user_id_seq OWNED <span class="token keyword">BY</span> <span class="token keyword">public</span><span class="token punctuation">.</span>users<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+
+<span class="token comment">--</span>
+<span class="token comment">-- DEFAULTs</span>
+<span class="token comment">--</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>add_data_file_requests <span class="token keyword">ALTER</span> <span class="token keyword">COLUMN</span> id <span class="token keyword">SET</span> <span class="token keyword">DEFAULT</span> nextval<span class="token punctuation">(</span><span class="token string">'public.add_data_file_requests_id_seq'</span>::regclass<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>data_files <span class="token keyword">ALTER</span> <span class="token keyword">COLUMN</span> id <span class="token keyword">SET</span> <span class="token keyword">DEFAULT</span> nextval<span class="token punctuation">(</span><span class="token string">'public.data_files_id_seq'</span>::regclass<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>data_sets <span class="token keyword">ALTER</span> <span class="token keyword">COLUMN</span> id <span class="token keyword">SET</span> <span class="token keyword">DEFAULT</span> nextval<span class="token punctuation">(</span><span class="token string">'public.&quot;dataSet_id_seq&quot;'</span>::regclass<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>edit_data_file_requests <span class="token keyword">ALTER</span> <span class="token keyword">COLUMN</span> id <span class="token keyword">SET</span> <span class="token keyword">DEFAULT</span> nextval<span class="token punctuation">(</span><span class="token string">'public.edit_data_file_requests_id_seq'</span>::regclass<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>request_statuses <span class="token keyword">ALTER</span> <span class="token keyword">COLUMN</span> id <span class="token keyword">SET</span> <span class="token keyword">DEFAULT</span> nextval<span class="token punctuation">(</span><span class="token string">'public.request_statuses_id_seq'</span>::regclass<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>role_change_requests <span class="token keyword">ALTER</span> <span class="token keyword">COLUMN</span> id <span class="token keyword">SET</span> <span class="token keyword">DEFAULT</span> nextval<span class="token punctuation">(</span><span class="token string">'public.role_change_requests_id_seq'</span>::regclass<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>roles <span class="token keyword">ALTER</span> <span class="token keyword">COLUMN</span> id <span class="token keyword">SET</span> <span class="token keyword">DEFAULT</span> nextval<span class="token punctuation">(</span><span class="token string">'public.roles_id_seq'</span>::regclass<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>tags <span class="token keyword">ALTER</span> <span class="token keyword">COLUMN</span> id <span class="token keyword">SET</span> <span class="token keyword">DEFAULT</span> nextval<span class="token punctuation">(</span><span class="token string">'public.tags_id_seq'</span>::regclass<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>users <span class="token keyword">ALTER</span> <span class="token keyword">COLUMN</span> id <span class="token keyword">SET</span> <span class="token keyword">DEFAULT</span> nextval<span class="token punctuation">(</span><span class="token string">'public.user_id_seq'</span>::regclass<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">--</span>
+<span class="token comment">-- Type: TABLEs DATA; Schema: public; Owner: alxftmcoungich</span>
+<span class="token comment">--</span>
+
+COPY <span class="token keyword">public</span><span class="token punctuation">.</span>add_data_file_requests <span class="token punctuation">(</span>id<span class="token punctuation">,</span> created_at<span class="token punctuation">,</span> link_to_file<span class="token punctuation">,</span> name<span class="token punctuation">,</span> user_id<span class="token punctuation">,</span> <span class="token keyword">status</span><span class="token punctuation">,</span> moderator_id<span class="token punctuation">,</span> data_set_id<span class="token punctuation">)</span> <span class="token keyword">FROM</span> stdin<span class="token punctuation">;</span>
+\<span class="token punctuation">.</span>
+
+COPY <span class="token keyword">public</span><span class="token punctuation">.</span>data_files <span class="token punctuation">(</span>id<span class="token punctuation">,</span> name<span class="token punctuation">,</span> updated_at<span class="token punctuation">,</span> created_at<span class="token punctuation">,</span> data_set_id<span class="token punctuation">,</span> link_to_file<span class="token punctuation">,</span> owner_id<span class="token punctuation">)</span> <span class="token keyword">FROM</span> stdin<span class="token punctuation">;</span>
+\<span class="token punctuation">.</span>
+
+COPY <span class="token keyword">public</span><span class="token punctuation">.</span>data_sets <span class="token punctuation">(</span>id<span class="token punctuation">,</span> updated_at<span class="token punctuation">,</span> created_at<span class="token punctuation">,</span> tag_id<span class="token punctuation">,</span> name<span class="token punctuation">,</span> owner_id<span class="token punctuation">)</span> <span class="token keyword">FROM</span> stdin<span class="token punctuation">;</span>
+\<span class="token punctuation">.</span>
+
+COPY <span class="token keyword">public</span><span class="token punctuation">.</span>edit_data_file_requests <span class="token punctuation">(</span>id<span class="token punctuation">,</span> user_id<span class="token punctuation">,</span> <span class="token keyword">status</span><span class="token punctuation">,</span> moderator_id<span class="token punctuation">,</span> data_file_id<span class="token punctuation">,</span> updated_at<span class="token punctuation">,</span> link_to_file<span class="token punctuation">,</span> name<span class="token punctuation">)</span> <span class="token keyword">FROM</span> stdin<span class="token punctuation">;</span>
+\<span class="token punctuation">.</span>
+
+COPY <span class="token keyword">public</span><span class="token punctuation">.</span>request_statuses <span class="token punctuation">(</span>id<span class="token punctuation">,</span> name<span class="token punctuation">)</span> <span class="token keyword">FROM</span> stdin<span class="token punctuation">;</span>
+<span class="token number">1</span>	<span class="token operator">Not</span> processed
+<span class="token number">2</span>	Confirmed
+<span class="token number">3</span>	Declined
+\<span class="token punctuation">.</span>
+
+COPY <span class="token keyword">public</span><span class="token punctuation">.</span>role_change_requests <span class="token punctuation">(</span>id<span class="token punctuation">,</span> user_id<span class="token punctuation">,</span> moderator_id<span class="token punctuation">,</span> <span class="token keyword">status</span><span class="token punctuation">,</span> processed_at<span class="token punctuation">)</span> <span class="token keyword">FROM</span> stdin<span class="token punctuation">;</span>
+<span class="token number">1</span>	<span class="token number">3</span>	<span class="token number">1</span>	<span class="token number">1</span>	<span class="token number">2022</span><span class="token operator">-</span><span class="token number">05</span><span class="token operator">-</span><span class="token number">15</span>
+\<span class="token punctuation">.</span>
+
+COPY <span class="token keyword">public</span><span class="token punctuation">.</span>roles <span class="token punctuation">(</span>id<span class="token punctuation">,</span> name<span class="token punctuation">)</span> <span class="token keyword">FROM</span> stdin<span class="token punctuation">;</span>
+<span class="token number">1</span>	<span class="token keyword">user</span>
+<span class="token number">2</span>	moderator
+\<span class="token punctuation">.</span>
+
+COPY <span class="token keyword">public</span><span class="token punctuation">.</span>tags <span class="token punctuation">(</span>id<span class="token punctuation">,</span> name<span class="token punctuation">,</span> main_tag<span class="token punctuation">)</span> <span class="token keyword">FROM</span> stdin<span class="token punctuation">;</span>
+<span class="token number">1</span>	<span class="token keyword">all</span>	\N
+<span class="token number">2</span>	test	<span class="token number">1</span>
+\<span class="token punctuation">.</span>
+
+COPY <span class="token keyword">public</span><span class="token punctuation">.</span>users <span class="token punctuation">(</span>id<span class="token punctuation">,</span> role<span class="token punctuation">,</span> first_name<span class="token punctuation">,</span> last_name<span class="token punctuation">,</span> email<span class="token punctuation">,</span> password<span class="token punctuation">)</span> <span class="token keyword">FROM</span> stdin<span class="token punctuation">;</span>
+<span class="token number">1</span>	<span class="token number">2</span>	Admin	Admin	admin<span class="token variable">@test.ua</span>	$<span class="token number">2</span>a$<span class="token number">10</span>$IQ0CFgVnezPfUM<span class="token operator">/</span>GjNyCKOIw<span class="token punctuation">.</span>SbybesHFkxmsPvmqGPIfkuC<span class="token punctuation">.</span>Tak2
+<span class="token number">3</span>	<span class="token number">2</span>	Admin	<span class="token number">2</span>	admin2<span class="token variable">@test.ua</span>	$<span class="token number">2</span>a$<span class="token number">10</span>$IQ0CFgVnezPfUM<span class="token operator">/</span>GjNyCKOIw<span class="token punctuation">.</span>SbybesHFkxmsPvmqGPIfkuC<span class="token punctuation">.</span>Tak2
+\<span class="token punctuation">.</span>
+
+<span class="token comment">--</span>
+<span class="token comment">-- Type: SEQUENCE SETs; Schema: public; Owner: alxftmcoungich</span>
+<span class="token comment">--</span>
+
+<span class="token keyword">SELECT</span> pg_catalog<span class="token punctuation">.</span>setval<span class="token punctuation">(</span><span class="token string">'public.add_data_file_requests_id_seq'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> pg_catalog<span class="token punctuation">.</span>setval<span class="token punctuation">(</span><span class="token string">'public.&quot;dataSet_id_seq&quot;'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> pg_catalog<span class="token punctuation">.</span>setval<span class="token punctuation">(</span><span class="token string">'public.data_files_id_seq'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> pg_catalog<span class="token punctuation">.</span>setval<span class="token punctuation">(</span><span class="token string">'public.edit_data_file_requests_id_seq'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> pg_catalog<span class="token punctuation">.</span>setval<span class="token punctuation">(</span><span class="token string">'public.request_statuses_id_seq'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> pg_catalog<span class="token punctuation">.</span>setval<span class="token punctuation">(</span><span class="token string">'public.role_change_requests_id_seq'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> pg_catalog<span class="token punctuation">.</span>setval<span class="token punctuation">(</span><span class="token string">'public.roles_id_seq'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> pg_catalog<span class="token punctuation">.</span>setval<span class="token punctuation">(</span><span class="token string">'public.tags_id_seq'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> pg_catalog<span class="token punctuation">.</span>setval<span class="token punctuation">(</span><span class="token string">'public.user_id_seq'</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">--</span>
+<span class="token comment">-- Type: CONSTRAINTs; Schema: public; Owner: alxftmcoungich</span>
+<span class="token comment">--</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>add_data_file_requests
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> add_data_file_requests_pk <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>data_files
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> data_file_pk <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>data_sets
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> dataset_pk <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>edit_data_file_requests
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> edit_data_file_requests_pk <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>request_statuses
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> request_statuses_pk <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>role_change_requests
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> role_change_requests_pk <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>roles
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> roles_pk <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>tags
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> tags_pk <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>users
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> user_pk <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">--</span>
+<span class="token comment">-- Type: INDEXs; Schema: public; Owner: alxftmcoungich</span>
+<span class="token comment">--</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> add_data_file_requests_id_uindex <span class="token keyword">ON</span> <span class="token keyword">public</span><span class="token punctuation">.</span>add_data_file_requests <span class="token keyword">USING</span> <span class="token keyword">btree</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> dataset_id_uindex <span class="token keyword">ON</span> <span class="token keyword">public</span><span class="token punctuation">.</span>data_sets <span class="token keyword">USING</span> <span class="token keyword">btree</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> edit_data_file_requests_id_uindex <span class="token keyword">ON</span> <span class="token keyword">public</span><span class="token punctuation">.</span>edit_data_file_requests <span class="token keyword">USING</span> <span class="token keyword">btree</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> request_statuses_id_uindex <span class="token keyword">ON</span> <span class="token keyword">public</span><span class="token punctuation">.</span>request_statuses <span class="token keyword">USING</span> <span class="token keyword">btree</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> request_statuses_name_uindex <span class="token keyword">ON</span> <span class="token keyword">public</span><span class="token punctuation">.</span>request_statuses <span class="token keyword">USING</span> <span class="token keyword">btree</span> <span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> role_change_requests_id_uindex <span class="token keyword">ON</span> <span class="token keyword">public</span><span class="token punctuation">.</span>role_change_requests <span class="token keyword">USING</span> <span class="token keyword">btree</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> roles_id_uindex <span class="token keyword">ON</span> <span class="token keyword">public</span><span class="token punctuation">.</span>roles <span class="token keyword">USING</span> <span class="token keyword">btree</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> roles_name_uindex <span class="token keyword">ON</span> <span class="token keyword">public</span><span class="token punctuation">.</span>roles <span class="token keyword">USING</span> <span class="token keyword">btree</span> <span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> tags_name_uindex <span class="token keyword">ON</span> <span class="token keyword">public</span><span class="token punctuation">.</span>tags <span class="token keyword">USING</span> <span class="token keyword">btree</span> <span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> user_email_uindex <span class="token keyword">ON</span> <span class="token keyword">public</span><span class="token punctuation">.</span>users <span class="token keyword">USING</span> <span class="token keyword">btree</span> <span class="token punctuation">(</span>email<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> user_id_uindex <span class="token keyword">ON</span> <span class="token keyword">public</span><span class="token punctuation">.</span>users <span class="token keyword">USING</span> <span class="token keyword">btree</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">--</span>
+<span class="token comment">-- Type: FK CONSTRAINTs; Schema: public; Owner: alxftmcoungich</span>
+<span class="token comment">--</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>add_data_file_requests
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> add_data_file_requests_data_sets_id_fk <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>data_set_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token keyword">public</span><span class="token punctuation">.</span>data_sets<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>add_data_file_requests
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> add_data_file_requests_request_statuses_id_fk <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token keyword">status</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token keyword">public</span><span class="token punctuation">.</span>request_statuses<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>add_data_file_requests
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> add_data_file_requests_users_id_fk <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>user_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token keyword">public</span><span class="token punctuation">.</span>users<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>add_data_file_requests
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> add_data_file_requests_users_id_fk_2 <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>moderator_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token keyword">public</span><span class="token punctuation">.</span>users<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>data_files
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> data_file_data_set_id_fk <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>data_set_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token keyword">public</span><span class="token punctuation">.</span>data_sets<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>data_files
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> data_files_fk_owner <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>owner_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token keyword">public</span><span class="token punctuation">.</span>users<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>data_sets
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> data_set_fk <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>tag_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token keyword">public</span><span class="token punctuation">.</span>tags<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>data_sets
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> data_sets_fk_owner <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>owner_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token keyword">public</span><span class="token punctuation">.</span>users<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>edit_data_file_requests
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> edit_data_file_requests_data_files_id_fk <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>data_file_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token keyword">public</span><span class="token punctuation">.</span>data_files<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>edit_data_file_requests
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> edit_data_file_requests_request_statuses_id_fk <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token keyword">status</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token keyword">public</span><span class="token punctuation">.</span>request_statuses<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>edit_data_file_requests
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> edit_data_file_requests_users_id_fk <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>user_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token keyword">public</span><span class="token punctuation">.</span>users<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>edit_data_file_requests
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> edit_data_file_requests_users_id_fk_2 <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>moderator_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token keyword">public</span><span class="token punctuation">.</span>users<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>role_change_requests
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> request_status_moderator_id_fk <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>moderator_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token keyword">public</span><span class="token punctuation">.</span>users<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>role_change_requests
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> request_status_user_id_fk <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>user_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token keyword">public</span><span class="token punctuation">.</span>users<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>role_change_requests
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> role_change_request_status_fk <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token keyword">status</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token keyword">public</span><span class="token punctuation">.</span>request_statuses<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> ONLY <span class="token keyword">public</span><span class="token punctuation">.</span>users
+    <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> user_fk <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>role<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token keyword">public</span><span class="token punctuation">.</span>roles<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">--</span>
+<span class="token comment">-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: alxftmcoungich</span>
+<span class="token comment">--</span>
+
+<span class="token keyword">REVOKE</span> <span class="token keyword">ALL</span> <span class="token keyword">ON</span> <span class="token keyword">SCHEMA</span> <span class="token keyword">public</span> <span class="token keyword">FROM</span> postgres<span class="token punctuation">;</span>
+<span class="token keyword">REVOKE</span> <span class="token keyword">ALL</span> <span class="token keyword">ON</span> <span class="token keyword">SCHEMA</span> <span class="token keyword">public</span> <span class="token keyword">FROM</span> <span class="token keyword">PUBLIC</span><span class="token punctuation">;</span>
+<span class="token keyword">GRANT</span> <span class="token keyword">ALL</span> <span class="token keyword">ON</span> <span class="token keyword">SCHEMA</span> <span class="token keyword">public</span> <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+<span class="token keyword">GRANT</span> <span class="token keyword">ALL</span> <span class="token keyword">ON</span> <span class="token keyword">SCHEMA</span> <span class="token keyword">public</span> <span class="token keyword">TO</span> <span class="token keyword">PUBLIC</span><span class="token punctuation">;</span>
+
+<span class="token comment">--</span>
+<span class="token comment">-- Name: LANGUAGE plpgsql; Type: ACL; Schema: -; Owner: postgres</span>
+<span class="token comment">--</span>
+
+<span class="token keyword">GRANT</span> <span class="token keyword">ALL</span> <span class="token keyword">ON</span> <span class="token keyword">LANGUAGE</span> plpgsql <span class="token keyword">TO</span> alxftmcoungich<span class="token punctuation">;</span>
+
+</code></pre></div></details> <h2 id="restfull-сервіс-для-управління-даними"><a href="#restfull-сервіс-для-управління-даними" class="header-anchor">#</a> RESTfull сервіс для управління даними</h2> <ul><li><a href="https://github.com/Fastroof/fastroof-team-project-rest" target="_blank" rel="noopener noreferrer">Перейти до репозиторія проекту<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://fastroof-team-project-rest.herokuapp.com/" target="_blank" rel="noopener noreferrer">Помацати проект самому<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Останнє оновлення:</span> <span class="time">5/31/2022, 12:07:19 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/fastroof_team_project/design/" class="prev">
+        Проектування інформаційного забезпечення
+      </a></span> <span class="next"><a href="/fastroof_team_project/test/">
+        Тестування працездатності системи
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/fastroof_team_project/assets/js/app.2c350d7c.js" defer></script><script src="/fastroof_team_project/assets/js/2.ef2e7497.js" defer></script><script src="/fastroof_team_project/assets/js/23.9d0ae498.js" defer></script>
+  </body>
+</html>
